@@ -3,6 +3,7 @@ import pytest
 from model.pages import github_pages
 
 
+# тесты с разными фикстурами для разных браузеров
 def test_click_sign_in_button_desk(desktop_config):
     github_pages.open_main_page()
     github_pages.click_sign_in_button_desktop()
@@ -16,6 +17,7 @@ def test_click_sign_in_button_mob(mobile_config):
     github_pages.close_mobile_browser()
 
 
+# тесты с разными фикстурами для пропуска тестов, если конфигурация браузера не подходит
 def test_skip_mobile_version(for_skip_mobile_test):
     github_pages.click_toggle_navigation_button()
     github_pages.click_sign_in_button_mobile()
@@ -27,6 +29,7 @@ def test_skip_desktop_version(for_skip_desktop_test):
     github_pages.close_desktop_browser()
 
 
+# параметризация =)
 @pytest.mark.parametrize('for_parametrize', [(1080, 1920)], indirect=True)
 def test_sign_in_desktop(for_parametrize):
     github_pages.open_main_page()
